@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="survey form.css">
+    <title>The Sunny Restaurant Survey Form</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <h1 id="title" class="title">The Sunny Restaurant Survey Form</h1>
+    <p id="description"  class="description"><em>Your answer help us to improve our services.</em></p>
+    
+    <div class="main" id="app">
+        <!--action:當提交表單時向何處發送表單數據-->
+        <!--method：用於發送表單數據的HTTP方法，值可以是：get、post-->
+        <!-- input -->
+        <form action="#" id="survey-form">
+            <div class="form-group">
+                <label id="name-label" for="name">Name</label>
+                <input
+                type="text"
+                v-model="name"
+                id="name"
+                class="form-control"
+                placeholder="Enter your name"
+                required />
+            </div>
+            <div class="form-group">
+                <label id="email-label" for="email">Email</label>
+                <input
+                type="email"
+                v-model="email"
+                id="email"
+                class="form-control"
+                placeholder="Enter your Email"
+                required />
+            </div>
+            <div class="form-group">
+                <label id="number-label" for="number"
+                >Age<span class="clue">(optional)</span></label>
+                <input
+                type="number"
+                v-model="age"
+                id="number"
+                min="10"
+                max="99"
+                class="form-control"
+                placeholder="Age" />
+            </div>
+            <span></span>
+            <!-- radio button -->
+            <div class="form-group">
+                <p>In a typical month, how often do you visit our restaurant? </p>
+                <label>
+                    <input
+                        v-model="numberOfVisits"
+                        value="first-time"
+                        type="radio"
+                        class="input-radio"
+                    /> This is my first visit</label>
+                </label>
+                <label>
+                    <input
+                        v-model="numberOfVisits"
+                        value="less-than-three"
+                        type="radio"
+                        class="input-radio"
+                    /> One to three times</label>
+                </label>
+                <label>
+                    <input
+                        v-model="numberOfVisits"
+                        value="more-than-four"
+                        type="radio"
+                        class="input-radio"
+                    /> More than four times</label>
+                </label>
+            </div>
+            <div class="form-group">
+                <p>Would you recommend our restaurant to a friend or relative?</p>
+                <label>
+                <input
+                    v-model="userRecommend"
+                    value="definitely"
+                    type="radio"
+                    class="input-radio"
+                    checked
+                /> Definitely</label>
+                <label>
+                <input
+                    v-model="userRecommend"
+                    value="maybe"
+                    type="radio"
+                    class="input-radio"
+                /> Maybe</label>
+                <label>
+                    <input
+                    v-model="userRecommend"
+                    value="not-sure"
+                    type="radio"
+                    class="input-radio"
+                /> Not sure</label>
+            </div>
+            <div class="form-group">
+                <p>What is your favorite kind of meal of The Sunny Restaurant?</p>
+                <!--dropdown 下拉式選單-->
+                    <select id="dropdown" v-model="mostLike" class="form-control" required>
+                    <option disabled selected value>Select an option</option>
+                    <option value="breakfast-dishes" class="control">Breakfast dishes</option>
+                    <option value="eggs" class="control">Eggs</option>
+                    <option value="bread" class="control">Bread</option>
+                    <option value="drinks" class="control">Drinks</option>
+                </select>
+                </div>
+                <!-- checkbox -->
+                <div class="form-group">
+                    <p>
+                    What is / will be the reason for you to visit again?
+                    <span class="clue">(Check all that apply)</span>
+                    </p>
+                    <label>
+                        <input
+                        v-model="reasonsToVisitAgain"
+                        value="food-taste"
+                        type="checkbox"
+                        class="input-checkbox"
+                    /> Food taste</label>
+                    <label>
+                        <input
+                        v-model="reasonsToVisitAgain"
+                        value="ingredients-quality"
+                        type="checkbox"
+                        class="input-checkbox"
+                    /> Ingredients quality</label>
+                    <label>
+                        <input
+                        v-model="reasonsToVisitAgain"
+                        value="service-speed"
+                        type="checkbox"
+                        class="input-checkbox"
+                    /> Food service speed</label>
+                    <label>
+                        <input
+                        v-model="reasonsToVisitAgain"
+                        value="food-temperature"
+                        type="checkbox"
+                        class="input-checkbox"
+                    /> Food temperature</label>
+                </div>
+                <div class="form-group">
+                    <p>
+                    What would you like to see improved?
+                    <span class="clue">(Check all that apply)</span>
+                    </p>
+                    <label>
+                        <input
+                        v-model="improvedReasons"
+                        value="food-taste"
+                        type="checkbox"
+                        class="input-checkbox"
+                    /> Food taste</label>
+                    <label>
+                        <input
+                        v-model="improvedReasons"
+                        value="ingredients-quality"
+                        type="checkbox"
+                        class="input-checkbox"
+                    /> Ingredients quality</label>
+                    <label>
+                        <input
+                        v-model="improvedReasons"
+                        value="service-speed"
+                        type="checkbox"
+                        class="input-checkbox"
+                    /> Food service speed</label>
+                    <label>
+                        <input
+                        v-model="improvedReasons"
+                        value="food-temperature"
+                        type="checkbox"
+                        class="input-checkbox"
+                    /> Food temperature</label>
+                    
+                </div>
+                <div class="form-group">
+                    <p>Any comments or suggestions?</p>
+                    <textarea
+                    id="comments"
+                    class="input-textarea"
+                    name="comment"
+                    placeholder="  Enter your comment here..."
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" id="submit" class="submit-button">
+                    Submit
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+        </body>
+        <script src="survey form.js"></script>
+</html>
+
+<!-- 
+    參考資料
+    https://www.zoho.com/survey/templates/business/dine-in-restaurant-survey.html
+-->
