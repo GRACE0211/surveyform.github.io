@@ -16,12 +16,12 @@
         <!--action:當提交表單時向何處發送表單數據-->
         <!--method：用於發送表單數據的HTTP方法，值可以是：get、post-->
         <!-- input -->
-        <form action="#" id="survey-form">
+        <form action="#" @submit="demo()" id="surveyForm">
             <div class="form-group">
                 <label id="name-label" for="name">Name</label>
                 <input
                 type="text"
-                v-model="name"
+                v-model.trim="userInfo.name"
                 id="name"
                 class="form-control"
                 placeholder="Enter your name"
@@ -31,7 +31,7 @@
                 <label id="email-label" for="email">Email</label>
                 <input
                 type="email"
-                v-model="email"
+                v-model.trim="userInfo.email"
                 id="email"
                 class="form-control"
                 placeholder="Enter your Email"
@@ -42,7 +42,7 @@
                 >Age<span class="clue">(optional)</span></label>
                 <input
                 type="number"
-                v-model="age"
+                v-model="userInfo.age"
                 id="number"
                 min="10"
                 max="99"
@@ -55,7 +55,7 @@
                 <p>In a typical month, how often do you visit our restaurant? </p>
                 <label>
                     <input
-                        v-model="numberOfVisits"
+                        v-model="userInfo.numberOfVisits"
                         value="first-time"
                         type="radio"
                         class="input-radio"
@@ -63,7 +63,7 @@
                 </label>
                 <label>
                     <input
-                        v-model="numberOfVisits"
+                        v-model="userInfo.numberOfVisits"
                         value="less-than-three"
                         type="radio"
                         class="input-radio"
@@ -71,7 +71,7 @@
                 </label>
                 <label>
                     <input
-                        v-model="numberOfVisits"
+                        v-model="userInfo.numberOfVisits"
                         value="more-than-four"
                         type="radio"
                         class="input-radio"
@@ -82,7 +82,7 @@
                 <p>Would you recommend our restaurant to a friend or relative?</p>
                 <label>
                 <input
-                    v-model="userRecommend"
+                    v-model="userInfo.userRecommend"
                     value="definitely"
                     type="radio"
                     class="input-radio"
@@ -90,14 +90,14 @@
                 /> Definitely</label>
                 <label>
                 <input
-                    v-model="userRecommend"
+                    v-model="userInfo.userRecommend"
                     value="maybe"
                     type="radio"
                     class="input-radio"
                 /> Maybe</label>
                 <label>
                     <input
-                    v-model="userRecommend"
+                    v-model="userInfo.userRecommend"
                     value="not-sure"
                     type="radio"
                     class="input-radio"
@@ -106,8 +106,8 @@
             <div class="form-group">
                 <p>What is your favorite kind of meal of The Sunny Restaurant?</p>
                 <!--dropdown 下拉式選單-->
-                    <select id="dropdown" v-model="mostLike" class="form-control" required>
-                    <option disabled selected value>Select an option</option>
+                    <select id="dropdown" v-model="userInfo.mostLike" class="form-control" required>
+                    <option value="">Select an option</option>
                     <option value="breakfast-dishes" class="control">Breakfast dishes</option>
                     <option value="eggs" class="control">Eggs</option>
                     <option value="bread" class="control">Bread</option>
@@ -122,28 +122,28 @@
                     </p>
                     <label>
                         <input
-                        v-model="reasonsToVisitAgain"
+                        v-model="userInfo.reasonsToVisitAgain"
                         value="food-taste"
                         type="checkbox"
                         class="input-checkbox"
                     /> Food taste</label>
                     <label>
                         <input
-                        v-model="reasonsToVisitAgain"
+                        v-model="userInfo.reasonsToVisitAgain"
                         value="ingredients-quality"
                         type="checkbox"
                         class="input-checkbox"
                     /> Ingredients quality</label>
                     <label>
                         <input
-                        v-model="reasonsToVisitAgain"
+                        v-model="userInfo.reasonsToVisitAgain"
                         value="service-speed"
                         type="checkbox"
                         class="input-checkbox"
                     /> Food service speed</label>
                     <label>
                         <input
-                        v-model="reasonsToVisitAgain"
+                        v-model="userInfo.reasonsToVisitAgain"
                         value="food-temperature"
                         type="checkbox"
                         class="input-checkbox"
@@ -156,28 +156,28 @@
                     </p>
                     <label>
                         <input
-                        v-model="improvedReasons"
+                        v-model="userInfo.improvedReasons"
                         value="food-taste"
                         type="checkbox"
                         class="input-checkbox"
                     /> Food taste</label>
                     <label>
                         <input
-                        v-model="improvedReasons"
+                        v-model="userInfo.improvedReasons"
                         value="ingredients-quality"
                         type="checkbox"
                         class="input-checkbox"
                     /> Ingredients quality</label>
                     <label>
                         <input
-                        v-model="improvedReasons"
+                        v-model="userInfo.improvedReasons"
                         value="service-speed"
                         type="checkbox"
                         class="input-checkbox"
                     /> Food service speed</label>
                     <label>
                         <input
-                        v-model="improvedReasons"
+                        v-model="userInfo.improvedReasons"
                         value="food-temperature"
                         type="checkbox"
                         class="input-checkbox"
@@ -191,6 +191,7 @@
                     class="input-textarea"
                     name="comment"
                     placeholder="  Enter your comment here..."
+                    value="comments"
                     ></textarea>
                 </div>
 
