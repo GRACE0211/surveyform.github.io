@@ -2,7 +2,7 @@ const app = Vue.createApp({
   data(){
     return {
       userInfo:{
-      name:"",
+      username:"",
       email:"",
       age:"",
       numberOfVisits: "first-time",
